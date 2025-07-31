@@ -14,6 +14,6 @@ foreach ($_FILES['archivos']['tmp_name'] as $key => $tmp_name) {
     }
 }
 
-header("Location: ingreso.php");
+header("Location: ingreso.html");
 exit();
 ?>
