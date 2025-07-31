@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Gestor de Carpetas</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      background-color: #7d9aa8;
+    }
+
+    .sidebar {
+      width: 260px;
+      background-color: #03363D;
+      color: white;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .profile {
+      width: 120px;
+      height: 120px;
+      background-color: white;
+      border-radius: 50%;
+      margin-bottom: 20px;
+    }
+
+    .sidebar h2 {
+      font-size: 18px;
+      margin: 15px 0 10px;
+      border-bottom: 1px solid white;
+      padding-bottom: 5px;
+    }
+
+    .sidebar button {
+      background-color: white;
+      color: black;
+      border: none;
+      padding: 10px 12px;
+      text-align: left;
+      font-size: 14px;
+      margin-bottom: 5px;
+      cursor: pointer;
+      border-radius: 2px;
+      width: 100%;
+    }
+
+    .salir {
+      margin-top: 20px;
+      background-color: #083b45;
+      color: white;
+      border: 2px solid white;
+      border-radius: 15px;
+      font-weight: bold;
+      width: 80px;
+    }
+
+    .contenido {
+      flex: 1;
+      padding: 40px;
+      background-color: #7d9aa8;
+      overflow-y: auto;
+    }
+
+    .seccion {
+      display: none;
+    }
+
+    .seccion.activa {
+      display: block;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background-color: white;
+      margin-top: 20px;
+    }
+
+    th, td {
+      border: 1px solid #ccc;
+      padding: 10px;
+    }
+
+    th {
+      background-color: #e0e0e0;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="sidebar">
+    <div class="profile"></div>
+    <h2>Selección</h2>
+    <button onclick="mostrarSeccion('carpetas')">CARPETAS ⌄</button>
+    <button onclick="mostrarSeccion('reciente')">RECIENTE</button>
+    <button onclick="mostrarSeccion('historial')">HISTORIAL</button>
+    <button onclick="mostrarSeccion('exportar')">EXPORTA CARPETA</button>
+    <button onclick="window.location.href='index.html'" class="salir">SALIR</button>
+  </div>
+
+  <div class="contenido">
+    <div id="carpetas" class="seccion activa">
+      <form action="subir_archivo.php" method="post" enctype="multipart/form-data">
+        <label for="archivo"><strong>Selecciona archivos:</strong></label><br><br>
+        <input type="file" name="archivos[]" id="archivo" multiple>
+        <input type="submit" value="Subir">
+      </form>
+      <hr style="margin: 20px 0;">
+      <div id="listaArchivos">
+        <?php include 'listar_archivos.php'; ?>
+      </div>
+    </div>
+
+    <<div id="reciente" class="seccion">
+  <h3>Archivos Recientes</h3>
+  <div id="listaRecientes">
+    <?php include 'archivos_recientes.php'; ?>
+  </div>
+</div>
+
+
+    <div id="historial" class="seccion">
+      <h3>Historial</h3>
+      <p>Aquí puedes mostrar el historial de carpetas o archivos.</p>
+    </div>
+
+    <div id="exportar" class="seccion">
+      <h3>Exportar carpeta</h3>
+      <p>Aquí podrías agregar una opción para descargar un zip, por ejemplo.</p>
+    </div>
+  </div>
+
+  <script>
+    function mostrarSeccion(id) {
+      const secciones = document.querySelectorAll('.seccion');
+      secciones.forEach(sec => sec.classList.remove('activa'));
+      document.getElementById(id).classList.add('activa');
+    }
+  </script>
+
+</body>
+</html>
