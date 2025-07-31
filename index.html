@@ -1,149 +1,76 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <title>Gestor de Carpetas</title>
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-
-    body {
-      font-family: Arial, sans-serif;
-      display: flex;
-      background-color: #7d9aa8;
-    }
-
-    .sidebar {
-      width: 260px;
-      background-color: #03363D;
-      color: white;
-      padding: 20px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      height: 100vh;
-    }
-
-    .profile {
-      width: 120px;
-      height: 120px;
-      background-color: white;
-      border-radius: 50%;
-      margin-bottom: 20px;
-    }
-
-    .sidebar h2 {
-      font-size: 18px;
-      margin: 15px 0 10px;
-      border-bottom: 1px solid white;
-      padding-bottom: 5px;
-    }
-
-    .sidebar button {
-      background-color: white;
-      color: black;
-      border: none;
-      padding: 10px 12px;
-      text-align: left;
-      font-size: 14px;
-      margin-bottom: 5px;
-      cursor: pointer;
-      border-radius: 2px;
-      width: 100%;
-    }
-
-    .salir {
-      margin-top: 20px;
-      background-color: #083b45;
-      color: white;
-      border: 2px solid white;
-      border-radius: 15px;
-      font-weight: bold;
-      width: 80px;
-    }
-
-    .contenido {
-      flex: 1;
-      padding: 40px;
-      background-color: #7d9aa8;
-      overflow-y: auto;
-    }
-
-    .seccion {
-      display: none;
-    }
-
-    .seccion.activa {
-      display: block;
-    }
-
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      background-color: white;
-      margin-top: 20px;
-    }
-
-    th, td {
-      border: 1px solid #ccc;
-      padding: 10px;
-    }
-
-    th {
-      background-color: #e0e0e0;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ledger Master Easy</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
+<script>
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.getElementById('nav-links');
+
+    hamburger.addEventListener('click', () => {
+        navLinks.classList.toggle('show');
+    });
+</script>
+
 <body>
+    <!-- Barra de navegación -->
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <img src="ing logo.jpg" alt="Logo Ledger Master Easy" width="100">
+            </div>
 
-  <div class="sidebar">
-    <div class="profile"></div>
-    <h2>Selección</h2>
-    <button onclick="mostrarSeccion('carpetas')">CARPETAS ⌄</button>
-    <button onclick="mostrarSeccion('reciente')">RECIENTE</button>
-    <button onclick="mostrarSeccion('historial')">HISTORIAL</button>
-    <button onclick="mostrarSeccion('exportar')">EXPORTA CARPETA</button>
-    <button onclick="window.location.href='index.html'" class="salir">SALIR</button>
-  </div>
+            <button class="hamburger" id="hamburger">  ☰  </button>
+            
+            <ul class="nav-links">
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a class="btn-resumen" href="resumen.html">Resumen</a></li>
+                <li><a class="btn-funciones" href="funciones.html"> funciones<a>
+                <li><a href="#conocenos">Conócenos</a></li>
+            </ul>
+            <div class="auth-buttons">
+                 <a class="btn-login" href="inicio-sesion.html">inicio sesion</a>
+                <a class="btn-register" href="registrar.html"> regsitrase<a>
+                
+            </div>
+        </nav>
+    </header>
 
-  <div class="contenido">
-    <div id="carpetas" class="seccion activa">
-      <form action="subir_archivo.php" method="post" enctype="multipart/form-data">
-        <label for="archivo"><strong>Selecciona archivos:</strong></label><br><br>
-        <input type="file" name="archivos[]" id="archivo" multiple>
-        <input type="submit" value="Subir">
-      </form>
-      <hr style="margin: 20px 0;">
-      <div id="listaArchivos">
-        <?php include 'listar_archivos.php'; ?>
-      </div>
-    </div>
-
-    <<div id="reciente" class="seccion">
-  <h3>Archivos Recientes</h3>
-  <div id="listaRecientes">
-    <?php include 'archivos_recientes.php'; ?>
-  </div>
-</div>
+    <!-- Banner principal -->
+    <section id="banner">
+        <div class="banner-content">
+            <h2>SOMOS UN EQUIPO DE SOLUCIÓN CONTABLE DE ALTA CONFIABILIDAD QUE SE ENCARGA DE TU CREACIÓN DE REGISTROS CONTABLES</h2>
+           
+           <button class="cta-button" onclick="window.location.href='ingreso.html'">PRUEBA AQUÍ</button>
 
 
-    <div id="historial" class="seccion">
-      <h3>Historial</h3>
-      <p>Aquí puedes mostrar el historial de carpetas o archivos.</p>
-    </div>
 
-    <div id="exportar" class="seccion">
-      <h3>Exportar carpeta</h3>
-      <p>Aquí podrías agregar una opción para descargar un zip, por ejemplo.</p>
-    </div>
-  </div>
+        </div>
+        <div class="banner-image">
+            <img src="ing pinctur.png" alt="Imagen de inicio" width="200">
+        </div>
+    </section>
 
-  <script>
-    function mostrarSeccion(id) {
-      const secciones = document.querySelectorAll('.seccion');
-      secciones.forEach(sec => sec.classList.remove('activa'));
-      document.getElementById(id).classList.add('activa');
-    }
-  </script>
+    <!-- Pie de página -->
+    <footer>
+        <div class="footer-content">
+            <p>Contacto: 3194048477</p>
+            <p>Síguenos en: <a href="#">easy.master</a></p>
+            <div class="social-icons">
+                <a href="#"><img src="ing insta.jpg" alt="Instagram" width="30"></a>
+                <a href="#"><img src="ing tik tok.png" alt="TikTok" width="30"></a>
+                <a href="#"><img src="ing facebook.png" alt="Facebook" width="30"></a>
+            </div>
+            
+        </div>
+    
+    </footer>
 
-</body>
-</html>
+    <script src
+    
+    htm
+
+
